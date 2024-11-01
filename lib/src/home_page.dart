@@ -19,9 +19,10 @@ class _HomePageState extends State<HomePage> {
     Icons.menu,
   ];
 
+  
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.sizeOf(context);
+    Size size = MediaQuery.sizeOf(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorNoteTheme.backgroundColor,
@@ -46,16 +47,19 @@ class _HomePageState extends State<HomePage> {
         body: Center(
           child: Text("${activeIndex + 1}"),
         ),
-        floatingActionButton: Container(
-          height: 50,
-          width: 50,
-          decoration: BoxDecoration(
-            color: ColorNoteTheme.activeColor,
-            borderRadius: BorderRadius.circular(50.0),
-          ),
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
+        floatingActionButton: GestureDetector(
+          onTap: () => addItemDialog(),
+          child: Container(
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+              color: ColorNoteTheme.activeColor,
+              borderRadius: BorderRadius.circular(50.0),
+            ),
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -73,5 +77,40 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+  
+  void addItemDialog() async{
+    return await showDialog(context: context, builder: (_)=> SimpleDialog(
+      title: const Text("Add"),
+      shape: Border.all(),
+      insetPadding: const EdgeInsets.symmetric(horizontal: 24,vertical: 24),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 30,vertical: 24),
+      children: [
+        GestureDetector(
+          onTap: () {
+            
+          },
+          child: Row(
+            children: [
+              Image.asset("assets/images/p.png"),
+              const Text("Text"),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20,),
+        GestureDetector(
+          onTap: () {
+            
+          },
+          child: Row(
+            children: [
+              Image.asset("assets/images/tS.png"),
+              
+              const Text("Checklist"),
+            ],
+          ),
+        ),
+      ],
+    ));
   }
 }
